@@ -1,0 +1,17 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(10, GPIO.IN)
+GPIO.setup(13, GPIO.OUT)
+
+while True:
+  i = GPIO.input(10)
+  if i==0: #When motion isn't detected
+    print ("No intruders", i)
+    GPIO.output(13, 0) #LED turns off
+    time.sleep(0.25)
+  elseif i==1: #When motion is detected
+    print ("Intruder detected", i)
+    GPIO.output(13, 1) #LED turns on
+    time.sleep(0.25)
